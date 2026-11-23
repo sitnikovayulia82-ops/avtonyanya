@@ -42,6 +42,15 @@
 5. `npm install` → `npx expo start` → откройте в приложении Expo Go или development build.
 6. Назначьте себя модератором — SQL в конце `schema.sql`.
 
+## Демо-версия на Render
+
+В репозитории есть `render.yaml`: Render сам соберёт демо (без сервера и СМС, код 1234).
+1. render.com → **New** → **Blueprint** → выбрать репозиторий `avtonyanya` → **Apply**.
+2. Через 3–5 минут демо откроется по адресу вида `https://avtonyanya-demo.onrender.com`.
+3. Каждый push в `main` обновляет демо автоматически.
+
+Локально: `npm run build:demo` → папка `dist`.
+
 ## Сборка и публикация
 
 ```bash

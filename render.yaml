@@ -1,0 +1,18 @@
+# Демо-версия для показа клиентам на Render (статический сайт, без сервера и СМС).
+# Render → New → Blueprint → выбрать этот репозиторий.
+services:
+  - type: web
+    name: avtonyanya-demo
+    runtime: static
+    branch: main
+    buildCommand: npm ci && npm run build:demo
+    staticPublishPath: ./dist
+    pullRequestPreviewsEnabled: false
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+    routes:
+      # Все адреса приложения (/home, /login…) отдаём одной страницей.
+      - type: rewrite
+        source: /*
+        destination: /index.html
