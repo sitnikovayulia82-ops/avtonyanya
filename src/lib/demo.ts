@@ -37,7 +37,7 @@ const files = new Map<string, string>();
 
 function addUser(id: string, phone: string, profile: Row | null) {
   users.push({ id, phone });
-  if (profile) profiles.push({ id, phone: '+' + phone, city: 'Набережные Челны', pd_consent_at: now(), created_at: now(), ...profile });
+  if (profile) profiles.push({ id, phone: '+' + phone, city: 'Москва', pd_consent_at: now(), created_at: now(), ...profile });
 }
 
 function addNanny(id: string, phone: string, name: string, districts: string[], n: Row) {
@@ -58,31 +58,31 @@ function addNanny(id: string, phone: string, name: string, districts: string[], 
 function seed() {
   addUser('demo-admin', '79000000000', { role: 'admin', full_name: 'Модератор', districts: [] });
 
-  addUser('demo-parent', '79170000001', { role: 'parent', full_name: 'Анна', districts: ['new_city', 'ges'] });
+  addUser('demo-parent', '79160000001', { role: 'parent', full_name: 'Анна', districts: ['zao', 'yuzao'] });
   children.push(
-    { id: 'c1', parent_id: 'demo-parent', name: 'Соня', birth_date: '2018-03-12', school: 'Школа №45', grade: '2 «Б»', from_district: 'new_city', to_district: 'ges', schedule: 'Пн–Пт: из школы в 13:00 домой\nВт, Чт: на танцы к 15:30', notes: 'Аллергия на орехи', created_at: now() },
-    { id: 'c2', parent_id: 'demo-parent', name: 'Тимур', birth_date: '2015-09-02', school: 'Ледовый дворец «Боровецкий»', grade: 'хоккей, группа 2015', from_district: 'new_city', to_district: 'ges', schedule: 'Пн, Ср, Пт: на тренировку к 17:00, обратно в 19:00', notes: null, created_at: now() },
+    { id: 'c1', parent_id: 'demo-parent', name: 'Соня', birth_date: '2018-03-12', school: 'Школа №1450', grade: '2 «Б»', from_district: 'zao', to_district: 'yuzao', schedule: 'Пн–Пт: из школы в 13:00 домой\nВт, Чт: на танцы к 15:30', notes: 'Аллергия на орехи', created_at: now() },
+    { id: 'c2', parent_id: 'demo-parent', name: 'Тимур', birth_date: '2015-09-02', school: 'Хоккейная секция, ледовая арена', grade: 'группа 2015 г.р.', from_district: 'zao', to_district: 'zao', schedule: 'Пн, Ср, Пт: на тренировку к 17:00, обратно в 19:00', notes: null, created_at: now() },
   );
 
-  addUser('demo-parent2', '79170000002', { role: 'parent', full_name: 'Гульнара', districts: ['zyab'] });
-  children.push({ id: 'c3', parent_id: 'demo-parent2', name: 'Амир', birth_date: '2017-05-20', school: 'Гимназия №57', grade: '3 «А»', from_district: 'zyab', to_district: 'new_city', schedule: 'Пн–Пт: в школу к 7:45', notes: null, created_at: now() });
-  addUser('demo-parent3', '79170000003', { role: 'parent', full_name: 'Елена', districts: ['ges'] });
-  children.push({ id: 'c4', parent_id: 'demo-parent3', name: 'Вика', birth_date: '2019-11-08', school: 'Детский сад №98', grade: 'старшая группа', from_district: 'ges', to_district: null, schedule: 'Пн–Пт: забрать из сада в 17:30, отвезти на английский', notes: null, created_at: now() });
+  addUser('demo-parent2', '79160000002', { role: 'parent', full_name: 'Гульнара', districts: ['sao'] });
+  children.push({ id: 'c3', parent_id: 'demo-parent2', name: 'Амир', birth_date: '2017-05-20', school: 'Гимназия №1567', grade: '3 «А»', from_district: 'sao', to_district: 'tsao', schedule: 'Пн–Пт: в школу к 7:45', notes: null, created_at: now() });
+  addUser('demo-parent3', '79160000003', { role: 'parent', full_name: 'Елена', districts: ['yuzao'] });
+  children.push({ id: 'c4', parent_id: 'demo-parent3', name: 'Вика', birth_date: '2019-11-08', school: 'Детский сад при школе №1980', grade: 'старшая группа', from_district: 'yuzao', to_district: null, schedule: 'Пн–Пт: забрать из сада в 17:30, отвезти на английский', notes: null, created_at: now() });
 
-  addNanny('demo-nanny', '79270000001', 'Хасанова Альфия Ринатовна', ['new_city', 'ges', 'zyab'], {
-    birth_date: '1988-04-15', about: 'Мама двоих детей, педагогическое образование. Вожу аккуратно, всегда на связи и присылаю отчёт: забрала — довезла.', experience_years: 6, price_from: 350, car_model: 'Kia Rio', car_color: 'белый', car_plate: 'А123ВС116', passport_series: '9208', passport_number: '123456', verification_status: 'approved', verified_at: now(),
+  addNanny('demo-nanny', '79260000001', 'Хасанова Альфия Ринатовна', ['zao', 'yuzao', 'tsao'], {
+    birth_date: '1988-04-15', about: 'Мама двоих детей, педагогическое образование. Вожу аккуратно, всегда на связи и присылаю отчёт: забрала — довезла.', experience_years: 6, price_from: 900, car_model: 'Kia Rio', car_color: 'белый', car_plate: 'А123ВС777', passport_series: '4518', passport_number: '123456', verification_status: 'approved', verified_at: now(),
   });
-  addNanny('demo-nanny2', '79270000002', 'Козлова Марина Сергеевна', ['new_city', 'centralny'], {
-    birth_date: '1991-07-01', about: 'Работала воспитателем в детском саду 8 лет. Есть бустер и детское кресло 9–18 кг.', experience_years: 8, price_from: 400, car_model: 'Hyundai Solaris', car_color: 'серый', car_plate: 'М456ОР716', passport_series: '9211', passport_number: '654321', verification_status: 'approved', verified_at: now(),
+  addNanny('demo-nanny2', '79260000002', 'Козлова Марина Сергеевна', ['zao', 'szao'], {
+    birth_date: '1991-07-01', about: 'Работала воспитателем в детском саду 8 лет. Есть бустер и детское кресло 9–18 кг.', experience_years: 8, price_from: 1000, car_model: 'Hyundai Solaris', car_color: 'серый', car_plate: 'М456ОР799', passport_series: '4520', passport_number: '654321', verification_status: 'approved', verified_at: now(),
   });
-  addNanny('demo-nanny3', '79270000003', 'Сафиуллина Ольга Ивановна', ['ges', 'old_city', 'sidorovka'], {
-    birth_date: '1983-12-20', about: 'Вожу детей на кружки и тренировки, подожду до конца занятия.', experience_years: 4, price_from: 300, car_model: 'Lada Vesta', car_color: 'синий', car_plate: 'Е789КХ116', passport_series: '9205', passport_number: '112233', verification_status: 'approved', verified_at: now(),
+  addNanny('demo-nanny3', '79260000003', 'Сафиуллина Ольга Ивановна', ['yuzao', 'yuao', 'tsao'], {
+    birth_date: '1983-12-20', about: 'Вожу детей на кружки и тренировки, подожду до конца занятия.', experience_years: 4, price_from: 800, car_model: 'Lada Vesta', car_color: 'синий', car_plate: 'Е789КХ197', passport_series: '4515', passport_number: '112233', verification_status: 'approved', verified_at: now(),
   });
-  addNanny('demo-pending', '79270000004', 'Гарипова Лилия Маратовна', ['zyab', 'komsomolsky'], {
-    birth_date: '1994-02-11', about: 'Хочу возить детей в утренние часы.', experience_years: 2, price_from: 300, car_model: 'Skoda Rapid', car_color: 'чёрный', car_plate: 'Т321УК716', passport_series: '9214', passport_number: '445566', verification_status: 'pending',
+  addNanny('demo-pending', '79260000004', 'Гарипова Лилия Маратовна', ['sao', 'svao'], {
+    birth_date: '1994-02-11', about: 'Хочу возить детей в утренние часы.', experience_years: 2, price_from: 800, car_model: 'Skoda Rapid', car_color: 'чёрный', car_plate: 'Т321УК177', passport_series: '4521', passport_number: '445566', verification_status: 'pending',
   });
-  addNanny('demo-pending2', '79270000005', 'Николаева Светлана Петровна', ['new_city'], {
-    birth_date: '1979-09-30', about: null, experience_years: 10, price_from: 450, car_model: 'Toyota Corolla', car_color: 'белый', car_plate: 'О555ОО116', passport_series: '9201', passport_number: '778899', verification_status: 'pending',
+  addNanny('demo-pending2', '79260000005', 'Николаева Светлана Петровна', ['zao'], {
+    birth_date: '1979-09-30', about: null, experience_years: 10, price_from: 1200, car_model: 'Toyota Corolla', car_color: 'белый', car_plate: 'О555ОО750', passport_series: '4511', passport_number: '778899', verification_status: 'pending',
   });
 }
 seed();

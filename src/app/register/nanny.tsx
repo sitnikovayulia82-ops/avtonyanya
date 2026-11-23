@@ -47,7 +47,7 @@ export default function NannyRegister() {
     if (fullName.trim().split(/\s+/).length < 2) errors.push('Укажите фамилию и имя полностью');
     if (!birthIso) errors.push('Дата рождения в формате ДД.ММ.ГГГГ');
     else if (ageFrom(birthIso) < MIN_NANNY_AGE) errors.push(`Автоняне должно быть не меньше ${MIN_NANNY_AGE} года`);
-    if (districts.length === 0) errors.push('Выберите хотя бы один район');
+    if (districts.length === 0) errors.push('Выберите хотя бы один округ');
     if (!carModel.trim() || !carPlate.trim()) errors.push('Укажите марку и госномер автомобиля');
     if (!/^\d{4}$/.test(series.replace(/\s/g, ''))) errors.push('Серия паспорта — 4 цифры');
     if (!/^\d{6}$/.test(number.replace(/\s/g, ''))) errors.push('Номер паспорта — 6 цифр');
@@ -119,12 +119,12 @@ export default function NannyRegister() {
       <Field label="О себе" value={about} onChangeText={setAbout} multiline placeholder="Мама двоих детей, педагогическое образование…" />
 
       <H2>Где готовы работать</H2>
-      <DistrictPicker value={districts} onChange={setDistricts} label={`Районы (${CITY})`} />
+      <DistrictPicker value={districts} onChange={setDistricts} label={`Округа (${CITY})`} />
 
       <H2>Автомобиль</H2>
       <Field label="Марка и модель" value={carModel} onChangeText={setCarModel} placeholder="Kia Rio" />
       <Field label="Цвет" value={carColor} onChangeText={setCarColor} placeholder="Белый" />
-      <Field label="Госномер" value={carPlate} onChangeText={setCarPlate} placeholder="А123ВС116" autoCapitalize="characters" />
+      <Field label="Госномер" value={carPlate} onChangeText={setCarPlate} placeholder="А123ВС777" autoCapitalize="characters" />
       <Checkbox checked={childSeat} onChange={setChildSeat} label="Есть детское кресло / бустер" />
 
       <H2>Паспорт</H2>

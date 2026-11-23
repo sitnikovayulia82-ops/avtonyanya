@@ -135,7 +135,7 @@ export function Chip({ label, selected, onPress }: { label: string; selected: bo
 export function DistrictPicker({
   value,
   onChange,
-  label = 'Районы города',
+  label = 'Округа Москвы',
 }: {
   value: string[];
   onChange: (v: string[]) => void;

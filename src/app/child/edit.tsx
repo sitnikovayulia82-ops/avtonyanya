@@ -46,7 +46,7 @@ export default function ChildEdit() {
     const birthIso = parseRuDate(birth);
     if (!name.trim()) return showAlert('Укажите имя ребёнка');
     if (!birthIso) return showAlert('Дата рождения в формате ДД.ММ.ГГГГ');
-    if (!fromDistrict) return showAlert('Выберите район, откуда забирать');
+    if (!fromDistrict) return showAlert('Выберите округ, откуда забирать');
 
     setBusy(true);
     const row = {

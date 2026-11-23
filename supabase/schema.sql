@@ -1,5 +1,5 @@
 -- =====================================================================
--- Автоняня Челны — схема базы данных Supabase (PostgreSQL)
+-- Автоняня — схема базы данных Supabase (PostgreSQL)
 -- Выполнить целиком в Supabase → SQL Editor → New query → Run.
 -- =====================================================================
 
@@ -9,7 +9,7 @@ create table if not exists public.profiles (
   role          text not null check (role in ('nanny', 'parent', 'admin')),
   full_name     text not null,
   phone         text not null default '',
-  city          text not null default 'Набережные Челны',
+  city          text not null default 'Москва',
   districts     text[] not null default '{}',
   pd_consent_at timestamptz not null,          -- согласие на обработку ПДн (152-ФЗ)
   created_at    timestamptz not null default now()

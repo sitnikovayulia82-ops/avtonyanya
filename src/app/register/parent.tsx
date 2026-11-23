@@ -18,7 +18,7 @@ export default function ParentRegister() {
   const submit = async () => {
     if (!session) return router.replace('/login?role=parent');
     if (!fullName.trim()) return showAlert('Укажите, как к вам обращаться');
-    if (districts.length === 0) return showAlert('Выберите хотя бы один район');
+    if (districts.length === 0) return showAlert('Выберите хотя бы один округ');
     if (!consent) return showAlert('Нужно согласие на обработку персональных данных');
 
     setBusy(true);
@@ -44,12 +44,12 @@ export default function ParentRegister() {
 
   return (
     <Screen>
-      <P muted>После анкеты добавьте профиль ребёнка — автоняни увидят запрос в своих районах.</P>
+      <P muted>После анкеты добавьте профиль ребёнка — автоняни увидят запрос в своих округах.</P>
       <Field label="Ваше имя" value={fullName} onChangeText={setFullName} placeholder="Анна" />
       <DistrictPicker
         value={districts}
         onChange={setDistricts}
-        label="В каких районах нужны поездки"
+        label="В каких округах нужны поездки"
       />
       <Checkbox
         checked={consent}

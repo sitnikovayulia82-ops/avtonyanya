@@ -1,14 +1,14 @@
 {
   "expo": {
-    "name": "Автоняня Челны",
-    "slug": "avtonyanya-chelny",
+    "name": "Автоняня",
+    "slug": "avtonyanya",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "ru.avtonyanya.chelny",
+      "bundleIdentifier": "ru.avtonyanya.app",
       "infoPlist": {
         "NSCameraUsageDescription": "Камера нужна, чтобы сфотографировать паспорт и сделать селфи для проверки автоняни.",
         "NSPhotoLibraryUsageDescription": "Доступ к фото нужен, чтобы загрузить фото паспорта, автомобиля или ребёнка."
@@ -22,7 +22,7 @@
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "ru.avtonyanya.chelny",
+      "package": "ru.avtonyanya.app",
       "permissions": [
         "CAMERA"
       ]
@@ -30,7 +30,7 @@
     "web": {
       "favicon": "./assets/favicon.png",
       "output": "single",
-      "name": "Автоняня Челны"
+      "name": "Автоняня"
     },
     "plugins": [
       [

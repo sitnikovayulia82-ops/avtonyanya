@@ -22,10 +22,10 @@ export default function Welcome() {
     <Screen>
       <View style={{ height: 40 }} />
       <Text style={{ fontSize: 56, textAlign: 'center' }}>🚗👧</Text>
-      <H1>Автоняня Челны</H1>
+      <H1>Автоняня</H1>
       <P muted>
         Безопасные поездки детей в школу, сад, на кружки и тренировки. Проверенные автоняни из
-        вашего района.
+        вашего округа Москвы.
       </P>
 
       {isDemo && !session ? (
@@ -47,7 +47,7 @@ export default function Welcome() {
         <Text style={{ fontSize: 18, fontWeight: '700', color: colors.text, marginBottom: 4 }}>
           Я родитель
         </Text>
-        <P muted>Создайте профиль ребёнка и найдите автоняню в своём районе.</P>
+        <P muted>Создайте профиль ребёнка и найдите автоняню в своём округе.</P>
         <Button title="Найти автоняню" onPress={() => go('parent')} />
       </Card>
 
@@ -56,7 +56,7 @@ export default function Welcome() {
           Я автоняня
         </Text>
         <P muted>
-          Возите детей в удобных вам районах. Нужны паспорт и подтверждённый телефон — мы проверяем
+          Возите детей в удобных вам округах. Нужны паспорт и подтверждённый телефон — мы проверяем
           каждую автоняню.
         </P>
         <Button title="Стать автоняней" variant="secondary" onPress={() => go('nanny')} />

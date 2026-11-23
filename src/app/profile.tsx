@@ -18,7 +18,7 @@ export default function ProfileScreen() {
 
   const save = async () => {
     if (!profile) return;
-    if (districts.length === 0) return showAlert('Выберите хотя бы один район');
+    if (districts.length === 0) return showAlert('Выберите хотя бы один округ');
     setBusy(true);
     const { error } = await supabase.from('profiles').update({ districts }).eq('id', profile.id);
     setBusy(false);
@@ -66,7 +66,7 @@ export default function ProfileScreen() {
             {profile.phone} · {profile.role === 'nanny' ? 'автоняня' : profile.role === 'parent' ? 'родитель' : 'модератор'}
           </P>
           <DistrictPicker value={districts} onChange={setDistricts} />
-          <Button title="Сохранить районы" onPress={save} loading={busy} />
+          <Button title="Сохранить округа" onPress={save} loading={busy} />
         </>
       ) : null}
       <Button title="Выйти" variant="secondary" onPress={logout} />

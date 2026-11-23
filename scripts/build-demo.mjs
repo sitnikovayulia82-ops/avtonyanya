@@ -23,8 +23,8 @@ js = js.replace(/"\/assets\/[^"]+?\.png"/g, (m) => {
 });
 js = js.replace(/<\/script/gi, '<\\/script');
 
-const page = `<title>Автоняня Челны</title>
-<meta name="description" content="Демо-версия приложения Автоняня Челны">
+const page = `<title>Автоняня Москва</title>
+<meta name="description" content="Демо-версия приложения Автоняня (Москва)">
 <style>
   html, body { height: 100%; margin: 0; background: #F1E6E1; }
   body { overflow: hidden; }

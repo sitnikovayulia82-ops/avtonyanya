@@ -109,10 +109,10 @@ export default function Home() {
             ))}
             <Button title="+ Добавить ребёнка" variant="secondary" onPress={() => router.push('/child/edit')} />
 
-            <H2>Автоняни в ваших районах</H2>
+            <H2>Автоняни в ваших округах</H2>
             <P muted>{districtNames(profile.districts)}</P>
             {nannies.length === 0 ? (
-              <P muted>Пока нет проверенных автонянь в выбранных районах. Потяните вниз, чтобы обновить.</P>
+              <P muted>Пока нет проверенных автонянь в выбранных округах. Потяните вниз, чтобы обновить.</P>
             ) : null}
             {nannies.map((n) => (
               <Card key={n.user_id}>
@@ -149,7 +149,7 @@ export default function Home() {
                 <Badge text="На проверке" color={colors.warn} />
                 <P>
                   Мы проверяем ваш паспорт и селфи. Как только анкету одобрят, вы увидите запросы родителей
-                  в ваших районах, а родители — вашу анкету.
+                  в ваших округах, а родители — вашу анкету.
                 </P>
               </Card>
             ) : null}
@@ -170,7 +170,7 @@ export default function Home() {
             {nanny?.verification_status === 'approved' ? (
               <>
                 <Badge text="✓ Вы проверенная автоняня" color={colors.ok} />
-                <H2>Запросы родителей в ваших районах</H2>
+                <H2>Запросы родителей в ваших округах</H2>
                 <P muted>{districtNames(profile.districts)}</P>
                 {requests.length === 0 ? <P muted>Пока запросов нет. Потяните вниз, чтобы обновить.</P> : null}
                 {requests.map((r) => (

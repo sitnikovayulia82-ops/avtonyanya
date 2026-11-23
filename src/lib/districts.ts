@@ -1,21 +1,20 @@
-// Районы Набережных Челнов. Список можно свободно править —
+// Округа Москвы. Список можно свободно править —
 // в базе хранятся только коды (id), названия показываются из этого файла.
-export const CITY = 'Набережные Челны';
+export const CITY = 'Москва';
 
 export const DISTRICTS = [
-  { id: 'new_city', name: 'Новый город' },
-  { id: 'avtozavodsky', name: 'Автозаводский р-н' },
-  { id: 'komsomolsky', name: 'Комсомольский р-н' },
-  { id: 'centralny', name: 'Центральный р-н' },
-  { id: 'ges', name: 'ГЭС' },
-  { id: 'zyab', name: 'ЗЯБ' },
-  { id: 'old_city', name: 'Старый город' },
-  { id: 'zamelekesye', name: 'Замелекесье' },
-  { id: 'sidorovka', name: 'Сидоровка' },
-  { id: 'elevator', name: 'Элеваторная гора' },
-  { id: 'bsi', name: 'БСИ' },
-  { id: 'krasnye_chelny', name: 'Красные Челны' },
-  { id: 'suburbs', name: 'Пригород (Тукаевский р-н)' },
+  { id: 'tsao', name: 'ЦАО' },
+  { id: 'sao', name: 'САО' },
+  { id: 'svao', name: 'СВАО' },
+  { id: 'vao', name: 'ВАО' },
+  { id: 'yuvao', name: 'ЮВАО' },
+  { id: 'yuao', name: 'ЮАО' },
+  { id: 'yuzao', name: 'ЮЗАО' },
+  { id: 'zao', name: 'ЗАО' },
+  { id: 'szao', name: 'СЗАО' },
+  { id: 'zelao', name: 'Зеленоград' },
+  { id: 'nao', name: 'Новая Москва (НАО)' },
+  { id: 'tao', name: 'Троицк (ТАО)' },
 ] as const;
 
 export type DistrictId = (typeof DISTRICTS)[number]['id'];
