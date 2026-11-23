@@ -1,6 +1,8 @@
+import { resetTo } from '../../lib/nav';
+import { showAlert } from '../../lib/dialog';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Alert } from 'react-native';
+
 import {
   Button,
   Card,
@@ -53,7 +55,7 @@ export default function NannyRegister() {
     if (!selfie) errors.push('Сделайте селфи с паспортом в руках');
     if (!consent) errors.push('Нужно согласие на обработку персональных данных');
     if (errors.length) {
-      Alert.alert('Заполните анкету', errors.join('\n'));
+      showAlert('Заполните анкету', errors.join('\n'));
       return;
     }
 
@@ -94,9 +96,9 @@ export default function NannyRegister() {
       if (nErr) throw nErr;
 
       await refreshProfile();
-      router.replace('/home');
+      resetTo('/home');
     } catch (e: any) {
-      Alert.alert('Ошибка', e?.message ?? String(e));
+      showAlert('Ошибка', e?.message ?? String(e));
     } finally {
       setBusy(false);
     }

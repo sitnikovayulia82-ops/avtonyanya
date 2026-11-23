@@ -1,14 +1,20 @@
 import 'react-native-url-polyfill/auto';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { createClient } from '@supabase/supabase-js';
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 import { Platform } from 'react-native';
+import { createDemoClient } from './demo';
+
+/** Демо-режим: без сервера и СМС, с примерами данных. */
+export const isDemo = process.env.EXPO_PUBLIC_DEMO === '1';
 
 const url = process.env.EXPO_PUBLIC_SUPABASE_URL ?? '';
 const anonKey = process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY ?? '';
 
-export const isConfigured = Boolean(url && anonKey);
+export const isConfigured = isDemo || Boolean(url && anonKey);
 
-export const supabase = createClient(url || 'http://localhost', anonKey || 'missing', {
+export const supabase: SupabaseClient = isDemo
+  ? (createDemoClient() as unknown as SupabaseClient)
+  : createClient(url || 'http://localhost', anonKey || 'missing', {
   auth: {
     storage: Platform.OS === 'web' ? undefined : AsyncStorage,
     autoRefreshToken: true,

@@ -5,13 +5,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Badge, Button, Card, colors, H2, P, s } from '../components/ui';
 import { useAuth } from '../lib/auth';
 import { districtName, districtNames } from '../lib/districts';
-import { supabase } from '../lib/supabase';
+import { showAlert } from '../lib/dialog';
+import { isDemo, supabase } from '../lib/supabase';
 import { ageFrom, type Child, type NannyProfile, type PublicNanny, type PublicRequest } from '../lib/types';
 
 function call(phone: string) {
+  if (isDemo) return showAlert('Звонок', `${phone}\n\nВ приложении на телефоне здесь сразу откроется звонок.`);
   Linking.openURL(`tel:${phone}`);
 }
 function whatsapp(phone: string) {
+  if (isDemo) return showAlert('WhatsApp', `${phone}\n\nВ приложении здесь откроется чат WhatsApp.`);
   Linking.openURL(`https://wa.me/${phone.replace(/\D/g, '')}`);
 }
 

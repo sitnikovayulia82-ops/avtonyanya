@@ -1,9 +1,10 @@
+import { showAlert } from '../lib/dialog';
 import * as ImagePicker from 'expo-image-picker';
 import type { ReactNode } from 'react';
 import {
   ActivityIndicator,
-  Alert,
   Image,
+  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -205,10 +206,10 @@ export function PhotoInput({
       cameraType: front ? ImagePicker.CameraType.front : ImagePicker.CameraType.back,
     };
     let result: ImagePicker.ImagePickerResult;
-    if (camera) {
+    if (camera && Platform.OS !== 'web') {
       const perm = await ImagePicker.requestCameraPermissionsAsync();
       if (!perm.granted) {
-        Alert.alert('Нет доступа к камере', 'Разрешите доступ к камере в настройках телефона.');
+        showAlert('Нет доступа к камере', 'Разрешите доступ к камере в настройках телефона.');
         return;
       }
       result = await ImagePicker.launchCameraAsync(options);

@@ -1,6 +1,7 @@
+import { showAlert } from '../lib/dialog';
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { Alert, Image, Text, TextInput } from 'react-native';
+import { Image, Text, TextInput } from 'react-native';
 import { Button, Card, P, Screen, s } from '../components/ui';
 import { districtNames } from '../lib/districts';
 import { signedUrl, supabase } from '../lib/supabase';
@@ -22,7 +23,7 @@ export default function Admin() {
       .select('*, profiles!inner(full_name, phone, districts)')
       .eq('verification_status', 'pending')
       .order('created_at');
-    if (error) return Alert.alert('Ошибка', error.message);
+    if (error) return showAlert('Ошибка', error.message);
     const rows = (data as Pending[]) ?? [];
     for (const r of rows) {
       r.passportUrl = await signedUrl('passports', r.passport_photo_path);
@@ -39,13 +40,13 @@ export default function Admin() {
 
   const decide = async (id: string, approve: boolean) => {
     const reason = reasons[id]?.trim();
-    if (!approve && !reason) return Alert.alert('Укажите причину отказа');
+    if (!approve && !reason) return showAlert('Укажите причину отказа');
     const { error } = await supabase.rpc('moderate_nanny', {
       nanny_id: id,
       approve,
       reason: approve ? null : reason,
     });
-    if (error) return Alert.alert('Ошибка', error.message);
+    if (error) return showAlert('Ошибка', error.message);
     load();
   };
 
@@ -63,8 +64,8 @@ export default function Admin() {
             📍 {districtNames(n.profiles.districts)}
           </P>
           <P muted>Сверьте: ФИО и дата рождения совпадают с паспортом, лицо на селфи = фото в паспорте.</P>
-          {n.passportUrl ? <Image source={{ uri: n.passportUrl }} style={{ height: 220, borderRadius: 10, marginBottom: 8 }} resizeMode="contain" /> : null}
-          {n.selfieUrl ? <Image source={{ uri: n.selfieUrl }} style={{ height: 220, borderRadius: 10, marginBottom: 8 }} resizeMode="contain" /> : null}
+          {n.passportUrl ? <Image source={{ uri: n.passportUrl }} style={{ width: '100%', height: 220, borderRadius: 10, marginBottom: 8 }} resizeMode="contain" /> : null}
+          {n.selfieUrl ? <Image source={{ uri: n.selfieUrl }} style={{ width: '100%', height: 220, borderRadius: 10, marginBottom: 8 }} resizeMode="contain" /> : null}
           <TextInput
             style={[s.input, { marginBottom: 8 }]}
             placeholder="Причина отказа (если отклоняете)"

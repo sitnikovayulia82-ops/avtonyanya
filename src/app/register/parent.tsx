@@ -1,6 +1,8 @@
+import { resetTo } from '../../lib/nav';
+import { showAlert } from '../../lib/dialog';
 import { router } from 'expo-router';
 import { useState } from 'react';
-import { Alert } from 'react-native';
+
 import { Button, Checkbox, DistrictPicker, Field, P, Screen } from '../../components/ui';
 import { useAuth } from '../../lib/auth';
 import { CITY } from '../../lib/districts';
@@ -15,9 +17,9 @@ export default function ParentRegister() {
 
   const submit = async () => {
     if (!session) return router.replace('/login?role=parent');
-    if (!fullName.trim()) return Alert.alert('Укажите, как к вам обращаться');
-    if (districts.length === 0) return Alert.alert('Выберите хотя бы один район');
-    if (!consent) return Alert.alert('Нужно согласие на обработку персональных данных');
+    if (!fullName.trim()) return showAlert('Укажите, как к вам обращаться');
+    if (districts.length === 0) return showAlert('Выберите хотя бы один район');
+    if (!consent) return showAlert('Нужно согласие на обработку персональных данных');
 
     setBusy(true);
     const { error } = await supabase.from('profiles').upsert({
@@ -31,12 +33,12 @@ export default function ParentRegister() {
     });
     if (error) {
       setBusy(false);
-      return Alert.alert('Ошибка', error.message);
+      return showAlert('Ошибка', error.message);
     }
     await refreshProfile();
     setBusy(false);
     // Сразу предлагаем добавить ребёнка.
-    router.replace('/home');
+    resetTo('/home');
     router.push('/child/edit');
   };
 

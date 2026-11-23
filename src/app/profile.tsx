@@ -1,6 +1,8 @@
+import { resetTo } from '../lib/nav';
+import { showAlert } from '../lib/dialog';
 import { router } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { Alert } from 'react-native';
+
 import { Button, DistrictPicker, H2, P, Screen } from '../components/ui';
 import { useAuth } from '../lib/auth';
 import { supabase } from '../lib/supabase';
@@ -16,22 +18,22 @@ export default function ProfileScreen() {
 
   const save = async () => {
     if (!profile) return;
-    if (districts.length === 0) return Alert.alert('Выберите хотя бы один район');
+    if (districts.length === 0) return showAlert('Выберите хотя бы один район');
     setBusy(true);
     const { error } = await supabase.from('profiles').update({ districts }).eq('id', profile.id);
     setBusy(false);
-    if (error) return Alert.alert('Ошибка', error.message);
+    if (error) return showAlert('Ошибка', error.message);
     await refreshProfile();
     router.back();
   };
 
   const logout = async () => {
     await signOut();
-    router.replace('/welcome');
+    resetTo('/welcome');
   };
 
   const deleteAccount = () =>
-    Alert.alert(
+    showAlert(
       'Удалить аккаунт?',
       'Анкета, профили детей и фото паспорта будут удалены без возможности восстановления.',
       [
@@ -48,7 +50,7 @@ export default function ProfileScreen() {
                 .remove(files.map((f) => `${profile!.id}/${f.name}`));
             }
             const { error } = await supabase.rpc('delete_my_account');
-            if (error) return Alert.alert('Ошибка', error.message);
+            if (error) return showAlert('Ошибка', error.message);
             await logout();
           },
         },

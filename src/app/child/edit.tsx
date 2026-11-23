@@ -1,6 +1,7 @@
+import { showAlert } from '../../lib/dialog';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
-import { Alert } from 'react-native';
+
 import { Button, DistrictSelect, Field, H2, P, Screen } from '../../components/ui';
 import { useAuth } from '../../lib/auth';
 import { supabase } from '../../lib/supabase';
@@ -43,9 +44,9 @@ export default function ChildEdit() {
   const save = async () => {
     if (!session) return;
     const birthIso = parseRuDate(birth);
-    if (!name.trim()) return Alert.alert('Укажите имя ребёнка');
-    if (!birthIso) return Alert.alert('Дата рождения в формате ДД.ММ.ГГГГ');
-    if (!fromDistrict) return Alert.alert('Выберите район, откуда забирать');
+    if (!name.trim()) return showAlert('Укажите имя ребёнка');
+    if (!birthIso) return showAlert('Дата рождения в формате ДД.ММ.ГГГГ');
+    if (!fromDistrict) return showAlert('Выберите район, откуда забирать');
 
     setBusy(true);
     const row = {
@@ -63,12 +64,12 @@ export default function ChildEdit() {
       ? await supabase.from('children').update(row).eq('id', id)
       : await supabase.from('children').insert(row);
     setBusy(false);
-    if (error) return Alert.alert('Ошибка', error.message);
+    if (error) return showAlert('Ошибка', error.message);
     router.back();
   };
 
   const remove = () =>
-    Alert.alert('Удалить профиль ребёнка?', '', [
+    showAlert('Удалить профиль ребёнка?', '', [
       { text: 'Отмена', style: 'cancel' },
       {
         text: 'Удалить',
